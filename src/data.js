@@ -579,8 +579,8 @@ export function getCaseStudiesForGroup(group) {
 export const frontendUnited = {
   name: "Frontend United",
   tagline: "Frontend United",
-  title: "Building",
-  titleSub: "COMMUNITIES",
+  title: "Communities",
+  titleSub: "BUILDING",
   paragraphs: [
     "Long before AI became my focus, I spent years bringing designers and developers together.",
     "As organiser of Frontend United London and host at conferences across Europe, I helped grow a welcoming, not-for-profit community centred on UX, UI, and front-end development. More than 2,000 people attended Frontend United events, creating opportunities for designers and engineers to learn from one another, challenge ideas, and build lasting connections across disciplines.",

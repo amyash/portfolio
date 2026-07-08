@@ -247,8 +247,8 @@ export default function App() {
                 />
               )}
               <h2 id="fu-spotlight-title" className="fu-spotlight-title">
-                <span>{frontendUnited.title}</span>
                 <span className="fu-spotlight-title-line">{frontendUnited.titleSub}</span>
+                <span>{frontendUnited.title}</span>
               </h2>
               <div className="fu-spotlight-text-grid">
                 {frontendUnited.paragraphs?.map((paragraph) => (

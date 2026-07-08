@@ -433,9 +433,11 @@
   max-width: none;
 }
 
-.fu-spotlight-title > span:first-child {
+.fu-spotlight-title > span:last-child {
+  font-size: 1.08em;
   font-weight: 900;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .fu-spotlight-title-line {
@@ -444,7 +446,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--orange);
-  padding-top: 0.05em;
+  padding-bottom: 0.05em;
 }
 
 .fu-spotlight-title em {
