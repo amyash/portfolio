@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import {
   about,
   aiFirst,
-  caseStudies,
   education,
   experience,
   frontendUnited,
-  highlightStats,
-  footerStats,
   profile,
+  showCareerSection,
   skills,
+  workPlaceholder,
 } from "./data";
 import AsciiCursor from "./components/AsciiCursor";
 import ExperienceTicker from "./components/ExperienceTicker";
@@ -31,8 +30,8 @@ export default function App() {
     <>
       <header className={`site-header ${menuOpen ? "menu-open" : ""}`}>
         <div className="header-inner">
-          <a href="#" className="logo" onClick={closeMenu}>
-            AA
+          <a href="#" className="logo" onClick={closeMenu} aria-label="Amy Ash home">
+            a
           </a>
           <nav className="nav-desktop" aria-label="Primary">
             <a href="#about">About</a>
@@ -90,6 +89,29 @@ export default function App() {
           </div>
         </section>
 
+        <ExperienceTicker theme="dark" />
+
+        {/* Inflection + stats */}
+        <section id="about" className="intro">
+          <div className="intro-grid">
+            <div className="intro-copy">
+              <p className="eyebrow"><span className="ai-chapter-num">02</span>{about.eyebrow}</p>
+              <h2 className="intro-headline">{about.headline}</h2>
+              <h3 className="intro-headline-sub">{about.headlineSub}</h3>
+            </div>
+
+            <div className="intro-visual">
+              <div className="intro-photo" role="img" aria-label="Designer at work" />
+            </div>
+          </div>
+
+          <div className="intro-prose">
+            {about.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+
         <section
           id="ai-first"
           className="ai-chapter"
@@ -111,8 +133,49 @@ export default function App() {
                 {aiFirst.highlights.map((item) => (
                   <article key={item.id} className="ai-card">
                     <p className="ai-card-tag">{item.tag}</p>
-                    <h3 className="ai-card-title">{item.title}</h3>
-                    <p className="ai-card-desc">{item.description}</p>
+                    <h3
+                      className={`ai-card-title ${
+                        item.id === "cursor" ? "ai-card-title--with-logo" : ""
+                      }`}
+                    >
+                      {item.id === "cursor" && (
+                        <img
+                          src="/logos/cursor.svg"
+                          alt=""
+                          aria-hidden="true"
+                          className="ai-card-title-logo"
+                        />
+                      )}
+                      <span>{item.title}</span>
+                    </h3>
+                    {item.description && (
+                      <p className="ai-card-desc">
+                        {item.id === "cursor" &&
+                        item.description.includes("Experience Design AI Learning Labs")
+                          ? item.description
+                              .split("Experience Design AI Learning Labs")
+                              .map((part, index, arr) => (
+                                <span key={`${item.id}-desc-${index}`}>
+                                  {part}
+                                  {index < arr.length - 1 && (
+                                    <strong>Experience Design AI Learning Labs</strong>
+                                  )}
+                                </span>
+                              ))
+                          : item.description}
+                      </p>
+                    )}
+                    {item.links?.map((link) => (
+                      <a
+                        key={link.href}
+                        className="ai-card-link"
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.cta} →
+                      </a>
+                    ))}
                     {item.href && (
                       <a
                         className="ai-card-link"
@@ -130,121 +193,28 @@ export default function App() {
           </div>
         </section>
 
-        <ExperienceTicker theme="orange" />
-
-        {/* Inflection + stats */}
-        <section id="about" className="intro">
-          <div className="intro-grid">
-            <div className="intro-copy">
-              <p className="eyebrow">{about.eyebrow}</p>
-              <h2 className="intro-headline">{about.headline}</h2>
-              <h3 className="intro-headline-sub">{about.headlineSub}</h3>
-            </div>
-
-            <div className="intro-visual">
-              <div className="intro-photo" role="img" aria-label="Designer at work" />
-              <div className="intro-stats">
-                {highlightStats.map((s) => (
-                  <div
-                    key={s.label}
-                    className={`stat-block stat-block--${s.color}`}
-                  >
-                    <p className="stat-block-value">{s.value}</p>
-                    <p className="stat-block-label">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="intro-prose">
-            {about.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-            ))}
-          </div>
-        </section>
-
-        {/* Dark quote */}
-        <section className="quote-band" aria-label="Testimonial">
-          <div className="quote-media" aria-hidden>
-            <div className="quote-thumb" />
-          </div>
-          <blockquote className="quote-content">
-            <p>
-              Amy&apos;s work is brilliant and she&apos;s an extremely nice and easy
-              person to work with — I highly recommend her.
-            </p>
-            <footer>
-              <cite>Tony Satchell</cite>
-              <span>Former collaborator</span>
-            </footer>
-          </blockquote>
-        </section>
-
-        {/* Case studies */}
+        {/* Selected work — placeholder while case studies are in progress */}
         <section id="work" className="work">
-          <p className="eyebrow">Selected work</p>
+          <p className="eyebrow"><span className="ai-chapter-num">04</span>Selected work</p>
           <h2 className="work-headline">
-            Six projects. One through-line: clarity, care, and craft.
+            Places I&apos;ve helped shape products, platforms, and public experiences.
           </h2>
 
-          <div className="case-row">
-            {caseStudies.slice(0, 3).map((cs) => (
-              <article key={cs.id} className="case-tile">
-                <div className="case-thumb" />
-                <span className="case-badge">{cs.status}</span>
-                <h3>{cs.company}</h3>
-                <p className="case-tag">{cs.tagline}</p>
-                <p className="case-q">{cs.question}</p>
-                <a
-                  href={cs.href}
-                  {...(cs.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  {cs.external ? "Visit" : "Learn more"} →
-                </a>
-              </article>
-            ))}
-          </div>
-
-          <div className="case-featured">
-            <div className="case-featured-media" />
-            <div className="case-featured-copy">
-              <span className="case-badge">Featured</span>
-              <h3>BFI, Science Museum &amp; cultural experiences</h3>
-              <p>
-                Led UX and UI on Mediatheque, BFI Player, and the BFI Samsung TV app;
-                co-curated the Oramics exhibition at the Science Museum — spatial
-                design and digital touchpoints from arthouse streaming to museum floors.
-              </p>
-              <a
-                href="https://player.bfi.org.uk/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit BFI Player →
-              </a>
-            </div>
-          </div>
-
-          <div className="case-row case-row--secondary">
-            {caseStudies.slice(3).map((cs) => (
-              <article key={cs.id} className="case-tile">
-                <div className="case-thumb" />
-                <span className="case-badge">{cs.status}</span>
-                <h3>{cs.company}</h3>
-                <p className="case-tag">{cs.tagline}</p>
-                <a
-                  href={cs.href}
-                  {...(cs.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  Learn more →
-                </a>
-              </article>
-            ))}
+          <div className="work-placeholder">
+            <ul className="work-placeholder-logos" aria-label="Selected clients">
+              {workPlaceholder.logos.map((client) => (
+                <li key={client.name}>
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="work-placeholder-logo"
+                    style={{ "--logo-scale": client.scale ?? 1 }}
+                    loading="lazy"
+                  />
+                </li>
+              ))}
+            </ul>
+            <p className="work-placeholder-note">{workPlaceholder.note}</p>
           </div>
         </section>
 
@@ -256,57 +226,80 @@ export default function App() {
         >
           <div className="fu-spotlight-inner">
             <div className="fu-spotlight-copy">
-              <p className="fu-spotlight-eyebrow">{frontendUnited.tagline}</p>
+              <p className="fu-spotlight-eyebrow"><span className="ai-chapter-num">05</span>{frontendUnited.tagline}</p>
               <h2 id="fu-spotlight-title" className="fu-spotlight-title">
-                MC for <em>{frontendUnited.name}</em>
+                Organiser &amp; host for <em>{frontendUnited.name}</em>
               </h2>
               <p className="fu-spotlight-role">{frontendUnited.role}</p>
-              <p className="fu-spotlight-desc">{frontendUnited.description}</p>
+              <div className="fu-spotlight-text-grid">
+                <p className="fu-spotlight-desc">{frontendUnited.description}</p>
+                {frontendUnited.paragraphs?.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)} className="fu-spotlight-desc">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
               <a
                 className="fu-spotlight-link"
                 href={frontendUnited.href}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Visit frontendunited.org →
+                Read more →
               </a>
             </div>
-            <div className="fu-spotlight-badge" aria-hidden>
-              <span className="fu-spotlight-badge-label">Annual</span>
-              <span className="fu-spotlight-badge-main">EU</span>
-              <span className="fu-spotlight-badge-sub">Design &amp; Tech</span>
+            <div className="fu-spotlight-media">
+              <div className="fu-spotlight-gallery-grid">
+                {[frontendUnited.mainImage, ...(frontendUnited.gallery ?? [])].map(
+                  (image) => (
+                    <img
+                      key={image.src}
+                      src={image.src}
+                      alt={image.alt}
+                      className="fu-spotlight-photo fu-spotlight-photo--thumb"
+                      loading="lazy"
+                    />
+                  )
+                )}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Experience */}
-        <section className="timeline-section">
-          <p className="eyebrow">Career</p>
-          <h2 className="timeline-headline">Where I&apos;ve made impact</h2>
-          <ol className="timeline">
-            {experience.map((item) => (
-              <li
-                key={`${item.org}-${item.period}`}
-                className={item.highlight ? "timeline-item--highlight" : ""}
-              >
-                <div className="timeline-main">
-                  <div>
-                    <strong>{item.role}</strong>
-                    <span>{item.org}</span>
+        {showCareerSection && (
+          <section id="career" className="timeline-section">
+            <p className="eyebrow">
+              <span className="ai-chapter-num">06</span>Career
+            </p>
+            <h2 className="timeline-headline">Where I&apos;ve made impact</h2>
+            <ol className="timeline">
+              {experience.map((item) => (
+                <li
+                  key={`${item.org}-${item.period}`}
+                  className={item.highlight ? "timeline-item--highlight" : ""}
+                >
+                  <div className="timeline-main">
+                    <div>
+                      <strong>{item.role}</strong>
+                      <span>{item.org}</span>
+                    </div>
+                    <time>{item.period}</time>
                   </div>
-                  <time>{item.period}</time>
-                </div>
-                {item.description && (
-                  <p className="timeline-desc">{item.description}</p>
-                )}
-              </li>
-            ))}
-          </ol>
-        </section>
+                  {item.description && (
+                    <p className="timeline-desc">{item.description}</p>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
 
         <section className="credentials" aria-labelledby="credentials-title">
           <div className="credentials-col">
-            <p className="eyebrow">Education</p>
+            <p className="eyebrow">
+              <span className="ai-chapter-num">{showCareerSection ? "07" : "06"}</span>
+              Education
+            </p>
             <h2 id="credentials-title" className="credentials-headline">
               Background
             </h2>
@@ -385,15 +378,6 @@ export default function App() {
               LinkedIn
             </a>
           </p>
-        </div>
-
-        <div className="footer-stats">
-          {footerStats.map((s) => (
-            <div key={s.label} className="footer-stat">
-              <span className="footer-stat-value">{s.value}</span>
-              <span className="footer-stat-label">{s.label}</span>
-            </div>
-          ))}
         </div>
 
         <div className="footer-mega">
