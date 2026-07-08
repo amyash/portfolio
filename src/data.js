@@ -13,14 +13,13 @@ export const aiFirst = {
   title: "AI-first",
   titleSub: "DESIGN",
   lead: "I design with AI at the centre, and I teach others to do the same.",
+  paragraphs: [
+    "AI isn't another tool in my workflow—it's become part of how I think, explore and build.",
+    "I use AI throughout the design process: from research synthesis and journey mapping to prototyping, interface generation and production-ready code.",
+    "At Expedia Group I help designers adopt AI-native workflows, creating training, running learning labs and demonstrating how tools like Cursor can shorten the gap between idea and implementation.",
+    "Alongside my day job I build personal products entirely with AI-assisted development. Oma, an AI companion for parents, was designed and built from scratch using Cursor and Claude Code before being prepared for release.",
+  ],
   highlights: [
-    {
-      id: "oma",
-      tag: "Personal project",
-      title: "Oma",
-      description:
-        "Built in Cursor and taken to app-store-ready, Oma is an AI companion for new parents. It answers real parenting questions with guidance grounded in leading parenting sources, translating trusted evidence into calm, practical support.",
-    },
     {
       id: "cursor",
       tag: "Expedia Group",
@@ -51,15 +50,19 @@ export const aiFirst = {
 };
 
 export const about = {
-  eyebrow: "Career overview",
-  headline:
-    "In 20 years of tech, I've moved from code and curation to leading experience design.",
-  headlineSub: "In 2026, I'm still curious, and still building things that matter.",
+  eyebrow: "Designing for People Since 2005",
+  headline: "Designing AI-native products, systems and experiences.",
+  headlineSub:
+    "I help teams turn complex problems into products people actually enjoy using.",
+  heroParagraphs: [
+    "Over the last twenty years I've designed everything from enterprise travel platforms and streaming services to museum installations, cultural archives and AI-powered tools. Today I work at Expedia Group, where I help shape the future of travel while exploring how AI is changing the way designers work.",
+    "Part designer, part prototyper, part educator—I believe the fastest way to understand an idea is to build it.",
+  ],
   paragraphs: [
-    "I'm an experience designer with deep roots in UX, UI, and interaction design — and enough front-end fluency to prototype what I mean. My work spans travel, culture, museums, agencies, and public services.",
-    "I graduated in 2005 with a degree in Interactive Graphic and Media Design from London College of Communication (formerly LCP), University of the Arts London, and have worked in the field ever since.",
-    "At Expedia Group I work across brands including hotels.com, expedia.com, and vrbo.com, among others. I am involved with designing AI products and training designers using Cursor. Before that, I led UX and UI at the British Film Institute, co-curated the Oramics exhibition at the Science Museum, and led agency and enterprise work at Recipe and AAT.",
-    "I also organised the London edition of Frontend United and hosted events across Europe — an annual conference for designers and developers — helping a cross-border community share what they're learning.",
+    "I began my career writing HTML and CSS before UX was widely recognised as a discipline. That technical background still shapes how I design today.",
+    "Since graduating from London College of Communication in 2005, I've worked across agencies, startups and global organisations, designing products used by millions of people as well as public experiences visited by thousands every day.",
+    "My work has included redesigning the BFI's digital products, creating exhibition experiences for the Science Museum, building enterprise tools at Expedia Group and helping teams adopt AI-native ways of designing and prototyping.",
+    "Alongside my design work I've organised international conferences, mentored designers and spoken about the future of design and technology across Europe.",
   ],
 };
 
@@ -575,14 +578,19 @@ export function getCaseStudiesForGroup(group) {
 
 export const frontendUnited = {
   name: "Frontend United",
-  role: "Organiser & host",
-  tagline: "Europe-wide design & tech conference",
-  description:
-    "Frontend United was an annual conference spanning UX, UI, and front-end development. I organised the London event and hosted editions across Europe.",
+  tagline: "Frontend United",
+  title: "Building",
+  titleSub: "COMMUNITIES",
   paragraphs: [
-    "The not-for-profit conference welcomed more than 2,000 attendees globally, covering everything from front-end engineering to UI and UX, with a focus on bringing those disciplines together to debate, inspire, and network.",
-    "It was built around openness and inclusion, and we streamed live to remote locations around the world, including Nis, Nairobi, Paramaribo, and Ho Chi Minh City.",
+    "Long before AI became my focus, I spent years bringing designers and developers together.",
+    "As organiser of Frontend United London and host at conferences across Europe, I helped grow a welcoming, not-for-profit community centred on UX, UI, and front-end development. More than 2,000 people attended Frontend United events, creating opportunities for designers and engineers to learn from one another, challenge ideas, and build lasting connections across disciplines.",
+    "The conference was founded on openness, collaboration, and inclusion. Alongside the in-person events, we live-streamed talks to communities around the world—including Niš, Nairobi, Paramaribo, and Ho Chi Minh City—making the conversations accessible far beyond the conference venue.",
+    "It remains one of the projects I'm most proud of: proof that great communities are designed with as much care as great products.",
   ],
+  heroImage: {
+    src: "/frontend-gallery/team-crowd.png",
+    alt: "Large crowd gathered on the stairs at Frontend United Utrecht 2018.",
+  },
   mainImage: {
     src: "/frontend-united-team.png",
     alt: "Frontend United organising team in event shirts.",
@@ -599,10 +607,6 @@ export const frontendUnited = {
     {
       src: "/frontend-gallery/speaker-03.png",
       alt: "Amy Ash presenting with stage visuals at Frontend United.",
-    },
-    {
-      src: "/frontend-gallery/team-crowd.png",
-      alt: "Large crowd photo from Frontend United in Utrecht.",
     },
     {
       src: "/frontend-gallery/speaker-04.png",
@@ -734,54 +738,34 @@ export const education = [
   },
 ];
 
-export const skills = [
-  {
-    label: "AI & build",
-    items: [
-      "Cursor",
-      "Claude Code",
-      "ChatGPT",
-      "Copilot",
-      "AI-native prototyping",
-      "AI experience design",
-      "Conversational UX",
-      "AI training & enablement",
-      "Agentic workflows",
-      "React prototyping",
-      "Design-to-code",
-    ],
-  },
-  {
-    label: "Design & prototype",
-    items: [
-      "Figma",
-      "FigJam",
-      "Framer",
-      "Interactive prototyping",
-      "Design systems",
-      "Motion & micro-interactions",
-    ],
-  },
-  {
-    label: "UX practice",
-    items: [
-      "User research",
-      "Usability testing",
-      "Information architecture",
-      "Accessibility (WCAG 2.2)",
-      "Service design",
-      "Product discovery",
-    ],
-  },
-  {
-    label: "Delivery",
-    items: [
-      "Design tokens",
-      "Storybook",
-      "HTML & CSS",
-      "Agile collaboration",
-      "Workshop facilitation",
-      "Analytics & experimentation",
-    ],
-  },
-];
+export const whatIDo = {
+  title: "What I Do",
+  items: [
+    "Experience Strategy",
+    "AI Product Design",
+    "Product Design",
+    "Interaction Design",
+    "Design Systems",
+    "Design Research",
+    "Rapid Prototyping",
+    "AI-native Development",
+    "React & Front-end Prototyping",
+    "Design Leadership",
+    "Workshop Facilitation",
+    "Design Education",
+  ],
+};
+
+export const tools = {
+  title: "Tools",
+  items: [
+    "Figma",
+    "Cursor",
+    "Claude Code",
+    "ChatGPT",
+    "React",
+    "Framer",
+    "Storybook",
+    "FigJam",
+  ],
+};

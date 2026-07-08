@@ -7,7 +7,8 @@ import {
   frontendUnited,
   profile,
   showCareerSection,
-  skills,
+  tools,
+  whatIDo,
   workPlaceholder,
 } from "./data";
 import AsciiCursor from "./components/AsciiCursor";
@@ -83,8 +84,13 @@ export default function App() {
               <span className="hero-title-line">EXPERIENCE</span>
               <span className="hero-title-line">DESIGNER</span>
             </h1>
-            <div className="hero-byline">
-              <p>currently at Expedia Group</p>
+
+            <div className="hero-copy">
+              <h2 className="hero-copy-lead">{about.headline}</h2>
+              <p className="hero-copy-sub">{about.headlineSub}</p>
+              {about.heroParagraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+              ))}
             </div>
           </div>
         </section>
@@ -96,19 +102,16 @@ export default function App() {
           <div className="intro-grid">
             <div className="intro-copy">
               <p className="eyebrow"><span className="ai-chapter-num">02</span>{about.eyebrow}</p>
-              <h2 className="intro-headline">{about.headline}</h2>
-              <h3 className="intro-headline-sub">{about.headlineSub}</h3>
+              <div className="intro-prose">
+                {about.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                ))}
+              </div>
             </div>
 
             <div className="intro-visual">
               <div className="intro-photo" role="img" aria-label="Designer at work" />
             </div>
-          </div>
-
-          <div className="intro-prose">
-            {about.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-            ))}
           </div>
         </section>
 
@@ -118,84 +121,92 @@ export default function App() {
           aria-labelledby="ai-chapter-title"
         >
           <div className="ai-chapter-inner">
-            <div className="ai-chapter-head">
-              <span className="ai-chapter-num">{aiFirst.number}</span>
-              <h2 id="ai-chapter-title" className="ai-chapter-title">
-                <span>{aiFirst.title}</span>
-                <span className="ai-chapter-title-line">{aiFirst.titleSub}</span>
-              </h2>
+            <div className="ai-chapter-primary">
+              <div className="ai-chapter-head">
+                <span className="ai-chapter-num">{aiFirst.number}</span>
+                <h2 id="ai-chapter-title" className="ai-chapter-title">
+                  <span>{aiFirst.title}</span>
+                  <span className="ai-chapter-title-line">{aiFirst.titleSub}</span>
+                </h2>
+              </div>
+
+              <div className="ai-chapter-body">
+                <p className="ai-chapter-lead">{aiFirst.lead}</p>
+
+                <div className="ai-chapter-grid">
+                  {aiFirst.highlights.map((item) => (
+                    <article key={item.id} className="ai-card">
+                      <p className="ai-card-tag">{item.tag}</p>
+                      <h3
+                        className={`ai-card-title ${
+                          item.id === "cursor" ? "ai-card-title--with-logo" : ""
+                        }`}
+                      >
+                        {item.id === "cursor" && (
+                          <img
+                            src="/logos/cursor.svg"
+                            alt=""
+                            aria-hidden="true"
+                            className="ai-card-title-logo"
+                          />
+                        )}
+                        <span>{item.title}</span>
+                      </h3>
+                      {item.description && (
+                        <p className="ai-card-desc">
+                          {item.id === "cursor" &&
+                          item.description.includes("Experience Design AI Learning Labs")
+                            ? item.description
+                                .split("Experience Design AI Learning Labs")
+                                .map((part, index, arr) => (
+                                  <span key={`${item.id}-desc-${index}`}>
+                                    {part}
+                                    {index < arr.length - 1 && (
+                                      <strong>Experience Design AI Learning Labs</strong>
+                                    )}
+                                  </span>
+                                ))
+                            : item.description}
+                        </p>
+                      )}
+                      {item.links?.map((link) => (
+                        <a
+                          key={link.href}
+                          className="ai-card-link"
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {link.cta} →
+                        </a>
+                      ))}
+                      {item.href && (
+                        <a
+                          className="ai-card-link"
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.cta}
+                        </a>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div className="ai-chapter-body">
-              <p className="ai-chapter-lead">{aiFirst.lead}</p>
-
-              <div className="ai-chapter-grid">
-                {aiFirst.highlights.map((item) => (
-                  <article key={item.id} className="ai-card">
-                    <p className="ai-card-tag">{item.tag}</p>
-                    <h3
-                      className={`ai-card-title ${
-                        item.id === "cursor" ? "ai-card-title--with-logo" : ""
-                      }`}
-                    >
-                      {item.id === "cursor" && (
-                        <img
-                          src="/logos/cursor.svg"
-                          alt=""
-                          aria-hidden="true"
-                          className="ai-card-title-logo"
-                        />
-                      )}
-                      <span>{item.title}</span>
-                    </h3>
-                    {item.description && (
-                      <p className="ai-card-desc">
-                        {item.id === "cursor" &&
-                        item.description.includes("Experience Design AI Learning Labs")
-                          ? item.description
-                              .split("Experience Design AI Learning Labs")
-                              .map((part, index, arr) => (
-                                <span key={`${item.id}-desc-${index}`}>
-                                  {part}
-                                  {index < arr.length - 1 && (
-                                    <strong>Experience Design AI Learning Labs</strong>
-                                  )}
-                                </span>
-                              ))
-                          : item.description}
-                      </p>
-                    )}
-                    {item.links?.map((link) => (
-                      <a
-                        key={link.href}
-                        className="ai-card-link"
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {link.cta} →
-                      </a>
-                    ))}
-                    {item.href && (
-                      <a
-                        className="ai-card-link"
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.cta}
-                      </a>
-                    )}
-                  </article>
-                ))}
-              </div>
+            <div className="ai-chapter-prose">
+              {aiFirst.paragraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Selected work — placeholder while case studies are in progress */}
         <section id="work" className="work">
-          <p className="eyebrow"><span className="ai-chapter-num">04</span>Selected work</p>
+          <p className="eyebrow"><span className="ai-chapter-num">04</span>Selected Projects</p>
           <h2 className="work-headline">
             Places I&apos;ve helped shape products, platforms, and public experiences.
           </h2>
@@ -227,12 +238,19 @@ export default function App() {
           <div className="fu-spotlight-inner">
             <div className="fu-spotlight-copy">
               <p className="fu-spotlight-eyebrow"><span className="ai-chapter-num">05</span>{frontendUnited.tagline}</p>
+              {frontendUnited.heroImage && (
+                <img
+                  src={frontendUnited.heroImage.src}
+                  alt={frontendUnited.heroImage.alt}
+                  className="fu-spotlight-hero"
+                  loading="lazy"
+                />
+              )}
               <h2 id="fu-spotlight-title" className="fu-spotlight-title">
-                Organiser &amp; host for <em>{frontendUnited.name}</em>
+                <span>{frontendUnited.title}</span>
+                <span className="fu-spotlight-title-line">{frontendUnited.titleSub}</span>
               </h2>
-              <p className="fu-spotlight-role">{frontendUnited.role}</p>
               <div className="fu-spotlight-text-grid">
-                <p className="fu-spotlight-desc">{frontendUnited.description}</p>
                 {frontendUnited.paragraphs?.map((paragraph) => (
                   <p key={paragraph.slice(0, 48)} className="fu-spotlight-desc">
                     {paragraph}
@@ -317,22 +335,23 @@ export default function App() {
             </ul>
           </div>
           <div className="credentials-col">
-            <p className="eyebrow">Skills</p>
-            <h2 className="credentials-headline visually-hidden">
-              Tools &amp; practice
-            </h2>
-            <div className="skills-grid">
-              {skills.map((group) => (
-                <div key={group.label} className="skills-group">
-                  <h3>{group.label}</h3>
-                  <ul>
-                    {group.items.map((skill) => (
-                      <li key={skill}>{skill}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <p className="eyebrow credentials-eyebrow--placeholder" aria-hidden="true">
+              <span className="ai-chapter-num">{showCareerSection ? "07" : "06"}</span>
+              Education
+            </p>
+            <h2 className="credentials-headline">{whatIDo.title}</h2>
+            <div className="skills-what">
+              <ul>
+                {whatIDo.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </div>
+          </div>
+
+          <div className="credentials-tools">
+            <h3 className="credentials-tools-title">{tools.title}</h3>
+            <p className="credentials-tools-list">{tools.items.join(" • ")}</p>
           </div>
         </section>
       </main>
@@ -340,10 +359,15 @@ export default function App() {
       {/* Black footer */}
       <footer id="contact" className="site-footer">
         <div className="footer-cta">
-          <h2>Get in touch</h2>
+          <h2>Let's Build Something Better</h2>
           <p>
-            Open to conversations about experience design roles, consulting, and
-            mentoring.
+            I'm always interested in ambitious teams exploring the intersection
+            of product design, AI and emerging technology.
+          </p>
+          <p>
+            Whether you're looking for a design leader, an AI design specialist
+            or someone who enjoys solving difficult problems, I'd love to hear
+            from you.
           </p>
           <form
             className="footer-form"
