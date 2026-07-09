@@ -3,8 +3,8 @@ import "./AsciiCursor.css";
 
 const PORTRAIT_SRC = "/amy-portrait.png?v=2025-eyes";
 const CELL = 7;
-const SPOTLIGHT_RADIUS = 240;
-const SPOTLIGHT_FADE = 1.25; // lower = softer, wider fade at edges
+const SPOTLIGHT_RADIUS = 280;
+const SPOTLIGHT_FADE = 0.65; // lower = softer, wider fade — brighter reveal
 const LERP = 0.12;
 const WHITE_SKIP = 0.98;
 const VARIANT_STEP = 72; // px of travel before next ASCII style
