@@ -2276,12 +2276,6 @@
   border-radius: 2px;
 }
 
-.credentials-tools {
-  margin-top: 2.5rem;
-  padding-top: 2rem;
-  border-top: 1.5px solid var(--black);
-}
-
 .credentials-tools-title {
   font-size: 0.75rem;
   font-weight: 700;
@@ -2295,6 +2289,54 @@
   margin: 0;
   font-size: 1rem;
   line-height: 1.6;
+  color: var(--black);
+}
+
+/* ─── What I Do ─── */
+.what-i-do {
+  background: var(--orange);
+  color: var(--black);
+  padding: clamp(4rem, 8vw, 6rem) var(--page-pad);
+  border-top: 1.5px solid var(--black);
+  border-bottom: 1.5px solid var(--black);
+}
+
+.what-i-do-inner {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.what-i-do .eyebrow {
+  color: var(--black);
+}
+
+.what-i-do .ai-chapter-num {
+  color: var(--white);
+}
+
+.what-i-do-headline {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin: 0 0 2rem;
+}
+
+.what-i-do .skills-what ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+}
+
+.what-i-do-tools {
+  margin-top: 2.5rem;
+}
+
+.what-i-do .credentials-tools-title {
+  color: var(--black);
+}
+
+.what-i-do .credentials-tools-list {
   color: var(--black);
 }
 
@@ -2535,17 +2577,25 @@
   }
 
   .credentials {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 4rem;
   }
 
-  .credentials-tools {
-    grid-column: 1 / -1;
-    margin-top: 3rem;
+  .credentials-col {
+    grid-column: 1;
   }
 
   .credentials-eyebrow--placeholder {
     display: block;
     visibility: hidden;
+  }
+
+  .what-i-do .skills-what ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+
+  .what-i-do-tools {
+    margin-top: 3rem;
   }
 }

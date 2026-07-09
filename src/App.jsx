@@ -204,9 +204,36 @@ export default function App() {
           </div>
         </section>
 
+        <section
+          id="what-i-do"
+          className="what-i-do"
+          aria-labelledby="what-i-do-title"
+        >
+          <div className="what-i-do-inner">
+            <p className="eyebrow">
+              <span className="ai-chapter-num">04</span>
+              Capabilities
+            </p>
+            <h2 id="what-i-do-title" className="what-i-do-headline">
+              {whatIDo.title}
+            </h2>
+            <div className="skills-what">
+              <ul>
+                {whatIDo.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="what-i-do-tools">
+              <h3 className="credentials-tools-title">{tools.title}</h3>
+              <p className="credentials-tools-list">{tools.items.join(" • ")}</p>
+            </div>
+          </div>
+        </section>
+
         {/* Selected work — placeholder while case studies are in progress */}
         <section id="work" className="work">
-          <p className="eyebrow"><span className="ai-chapter-num">04</span>Selected Projects</p>
+          <p className="eyebrow"><span className="ai-chapter-num">05</span>Selected Projects</p>
           <h2 className="work-headline">
             Places I&apos;ve helped shape products, platforms, and public experiences.
           </h2>
@@ -237,7 +264,7 @@ export default function App() {
         >
           <div className="fu-spotlight-inner">
             <div className="fu-spotlight-copy">
-              <p className="fu-spotlight-eyebrow"><span className="ai-chapter-num">05</span>{frontendUnited.tagline}</p>
+              <p className="fu-spotlight-eyebrow"><span className="ai-chapter-num">06</span>{frontendUnited.tagline}</p>
               {frontendUnited.heroImage && (
                 <img
                   src={frontendUnited.heroImage.src}
@@ -287,7 +314,7 @@ export default function App() {
         {showCareerSection && (
           <section id="career" className="timeline-section">
             <p className="eyebrow">
-              <span className="ai-chapter-num">06</span>Career
+              <span className="ai-chapter-num">07</span>Career
             </p>
             <h2 className="timeline-headline">Where I&apos;ve made impact</h2>
             <ol className="timeline">
@@ -312,14 +339,20 @@ export default function App() {
           </section>
         )}
 
-        <section className="credentials" aria-labelledby="credentials-title">
+        <section
+          id="education"
+          className="credentials"
+          aria-labelledby="credentials-title"
+        >
           <div className="credentials-col">
             <p className="eyebrow">
-              <span className="ai-chapter-num">{showCareerSection ? "07" : "06"}</span>
+              <span className="ai-chapter-num">
+                {showCareerSection ? "08" : "07"}
+              </span>
               Education
             </p>
-            <h2 id="credentials-title" className="credentials-headline">
-              Background
+            <h2 id="credentials-title" className="visually-hidden">
+              Education
             </h2>
             <ul className="edu-list">
               {education.map((item) => (
@@ -333,25 +366,6 @@ export default function App() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="credentials-col">
-            <p className="eyebrow credentials-eyebrow--placeholder" aria-hidden="true">
-              <span className="ai-chapter-num">{showCareerSection ? "07" : "06"}</span>
-              Education
-            </p>
-            <h2 className="credentials-headline">{whatIDo.title}</h2>
-            <div className="skills-what">
-              <ul>
-                {whatIDo.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="credentials-tools">
-            <h3 className="credentials-tools-title">{tools.title}</h3>
-            <p className="credentials-tools-list">{tools.items.join(" • ")}</p>
           </div>
         </section>
       </main>
