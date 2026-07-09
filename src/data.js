@@ -10,8 +10,8 @@ export const showCareerSection = false;
 
 export const aiFirst = {
   number: "03",
-  title: "AI-first",
-  titleSub: "DESIGN",
+  title: "DESIGNING",
+  titleSub: "with AI",
   lead: "I design with AI at the centre, and I teach others to do the same.",
   paragraphs: [
     "AI isn't another tool in my workflow—it's become part of how I think, explore and build.",
