@@ -26,46 +26,44 @@ npm run preview
 
 ## Deploy to amyash.co.uk
 
-Your site is on **LiteSpeed shared hosting**. The built site lives in `dist/` after `npm run build`.
+Your site is on **LiteSpeed shared hosting**. Pushing to `main` builds the site and deploys it automatically via GitHub Actions.
 
-### One-time setup
+### Push to deploy (recommended)
 
-1. Enable **SSH** in your hosting control panel (cPanel → **SSH Access**).
-2. Copy the example env file and add your details:
+Every push to `main` runs `.github/workflows/deploy.yml`: build → rsync over SSH → live site.
+
+#### One-time GitHub setup
+
+1. Enable **SSH** in cPanel → **SSH Access**.
+2. Create a deploy key (if you don’t already have one):
 
 ```bash
-cp .deploy.env.example .deploy.env
+ssh-keygen -t ed25519 -C "github-deploy-amyash" -f ~/.ssh/amyash_deploy -N ""
 ```
 
-3. Edit `.deploy.env`:
-   - `SSH_HOST` — usually `amyash.co.uk` or your server hostname
-   - `SSH_USER` — your cPanel username
-   - `SSH_REMOTE_DIR` — usually `/home/USERNAME/public_html`
-4. Ensure your SSH key is on the server, or be ready to enter your password when prompted.
+3. Add the **public** key to the server (cPanel → SSH Access → Manage SSH Keys, or append to `~/.ssh/authorized_keys` on the host).
+4. In GitHub → **Settings → Secrets and variables → Actions**, add:
 
-### Publish (SSH)
+| Secret | Value |
+| --- | --- |
+| `SSH_PRIVATE_KEY` | Full contents of `~/.ssh/amyash_deploy` (the private key) |
+| `SSH_HOST` | `amyash.co.uk` (or your server hostname) |
+| `SSH_USER` | Your cPanel username |
+| `SSH_REMOTE_DIR` | `/home/USERNAME/public_html` |
+| `SSH_PORT` | `22` (optional) |
+| `SSH_DELETE` | `false` (optional; set `true` to remove remote files not in the build) |
+
+5. Push to `main` (or run the workflow manually under **Actions → Deploy**).
+
+### Manual deploy (local)
 
 ```bash
-chmod +x scripts/deploy-ssh.sh   # first time only
+cp .deploy.env.example .deploy.env   # first time
+# edit .deploy.env with SSH_HOST, SSH_USER, SSH_REMOTE_DIR
+chmod +x scripts/deploy-ssh.sh       # first time
 npm run deploy
 ```
 
-This builds the site and rsyncs `dist/` to your server.
+FTP alternative: `npm run deploy:ftp`
 
-### Publish (FTP alternative)
-
-```bash
-npm run deploy:ftp
-```
-
-### Manual upload (FileZilla / Cyberduck)
-
-1. Run `npm run build`
-2. Connect via **SFTP** or **FTPS**
-3. Upload the **contents** of `dist/` into `public_html`
-
-**Note:** The build is ~200MB because case-study video assets are still in `public/`. The live site doesn’t use them yet, but they upload with the build. We can exclude them later to speed up deploys.
-
-### GitHub backup
-
-Code is at `github.com:amyash/portfolio.git`. Commit and push separately — hosting is SSH/FTP, not GitHub Pages.
+**Note:** The build can be large because case-study video assets are still in `public/`. We can exclude them later to speed up deploys.

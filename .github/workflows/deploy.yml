@@ -1,0 +1,69 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          if [ -z "$SSH_PRIVATE_KEY" ] || [ -z "$SSH_HOST" ]; then
+            echo "Missing required secrets: SSH_PRIVATE_KEY and SSH_HOST"
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          PORT="${SSH_PORT:-22}"
+          ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_REMOTE_DIR: ${{ secrets.SSH_REMOTE_DIR }}
+          SSH_DELETE: ${{ secrets.SSH_DELETE }}
+        run: |
+          : "${SSH_USER:?Set secret SSH_USER}"
+          : "${SSH_REMOTE_DIR:?Set secret SSH_REMOTE_DIR}"
+
+          PORT="${SSH_PORT:-22}"
+          RSYNC_OPTS=(-avz --human-readable)
+          if [ "${SSH_DELETE:-false}" = "true" ]; then
+            RSYNC_OPTS+=(--delete)
+          fi
+
+          rsync "${RSYNC_OPTS[@]}" \
+            -e "ssh -p $PORT -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
+            dist/ \
+            "${SSH_USER}@${SSH_HOST}:${SSH_REMOTE_DIR%/}/"
