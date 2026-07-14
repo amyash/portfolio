@@ -16,8 +16,26 @@
   --gray: #6b6b6b;
   --gray-light: #f5f5f5;
   --font: "Inter", system-ui, -apple-system, sans-serif;
+  /* Design rule: Geist Mono is always used in capitals */
+  --font-mono: "Geist Mono", monospace;
   --page-pad: clamp(1.25rem, 4vw, 3rem);
   --nav-height: 3.5rem;
+}
+
+/* Geist Mono is always set in capitals, bold weight */
+.eyebrow,
+.fu-spotlight-eyebrow,
+.partners-label,
+.ascii-cursor-hint,
+.header-link,
+.csm-coming-soon-eyebrow,
+.csm-hero-mark,
+.csm-hero-status,
+.csm-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 html {

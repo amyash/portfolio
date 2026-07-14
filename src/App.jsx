@@ -1,77 +1,95 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   about,
   aiFirst,
   education,
   experience,
   frontendUnited,
+  getCaseStudyById,
   profile,
   showCareerSection,
   tools,
   whatIDo,
-  workPlaceholder,
+  selectedProjects,
 } from "./data";
 import AsciiCursor from "./components/AsciiCursor";
 import ExperienceTicker from "./components/ExperienceTicker";
+import MediaLightbox from "./components/MediaLightbox";
 import "./App.css";
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const frontendMedia = [
+    frontendUnited.heroImage,
+    frontendUnited.mainImage,
+    ...(frontendUnited.gallery ?? []),
+  ]
+    .filter(Boolean)
+    .map((image) => ({ ...image, type: "image" }));
+
+  if (frontendUnited.video) {
+    frontendMedia.push(frontendUnited.video);
+  }
+
+  const frontendVideo = frontendUnited.video ?? null;
+  const frontendVideoIndex = frontendVideo
+    ? frontendMedia.findIndex(
+        (item) => item.type === "video" && item.videoId === frontendVideo.videoId,
+      )
+    : -1;
+  const frontendGalleryItems = frontendMedia
+    .map((item, index) => ({ item, index }))
+    .filter(({ item, index }) => index > 0 && item.type !== "video");
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = lightboxIndex != null ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [menuOpen]);
+  }, [lightboxIndex]);
 
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    if (window.location.hash !== "#work") return undefined;
+    const target = document.getElementById("work");
+    if (!target) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const scrollToWork = (event) => {
+    const target = document.getElementById("work");
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "/#work");
+  };
+
+  const openLightbox = (index) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
 
   return (
     <>
-      <header className={`site-header ${menuOpen ? "menu-open" : ""}`}>
+      <header className="site-header">
         <div className="header-inner">
-          <a href="#" className="logo" onClick={closeMenu} aria-label="Amy Ash home">
-            a
-          </a>
-          <nav className="nav-desktop" aria-label="Primary">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <a
-            className="btn-nav"
-            href="https://www.linkedin.com/in/amyashldn/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-          <button
-            type="button"
-            className="menu-toggle"
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            Menu
-          </button>
+          <Link to="/" className="logo" aria-label="Amy Ash home">
+            <img src="/a-logo.png" alt="" width="32" height="32" />
+          </Link>
         </div>
+        <Link to="/#work" className="header-link" onClick={scrollToWork}>
+          <span className="header-link-flip">
+            <span className="header-link-face header-link-face--front">
+              Case Studies
+            </span>
+            <span className="header-link-face header-link-face--back" aria-hidden="true">
+              Case Studies
+            </span>
+          </span>
+        </Link>
       </header>
-
-      <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`}>
-        <nav>
-          <a href="#about" onClick={closeMenu}>
-            About
-          </a>
-          <a href="#work" onClick={closeMenu}>
-            Work
-          </a>
-          <a href="#contact" onClick={closeMenu}>
-            Contact
-          </a>
-        </nav>
-      </div>
 
       <main>
         {/* Hero */}
@@ -111,6 +129,33 @@ export default function App() {
 
             <div className="intro-visual">
               <div className="intro-photo" role="img" aria-label="Designer at work" />
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="what-i-do"
+          className="what-i-do"
+          aria-labelledby="what-i-do-title"
+        >
+          <div className="what-i-do-inner">
+            <p className="eyebrow">
+              <span className="ai-chapter-num">03</span>
+              Capabilities
+            </p>
+            <h2 id="what-i-do-title" className="what-i-do-headline">
+              {whatIDo.title}
+            </h2>
+            <div className="skills-what">
+              <ul>
+                {whatIDo.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="what-i-do-tools">
+              <h3 className="credentials-tools-title">{tools.title}</h3>
+              <p className="credentials-tools-list">{tools.items.join(" • ")}</p>
             </div>
           </div>
         </section>
@@ -204,55 +249,57 @@ export default function App() {
           </div>
         </section>
 
-        <section
-          id="what-i-do"
-          className="what-i-do"
-          aria-labelledby="what-i-do-title"
-        >
-          <div className="what-i-do-inner">
-            <p className="eyebrow">
-              <span className="ai-chapter-num">04</span>
-              Capabilities
-            </p>
-            <h2 id="what-i-do-title" className="what-i-do-headline">
-              {whatIDo.title}
-            </h2>
-            <div className="skills-what">
-              <ul>
-                {whatIDo.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="what-i-do-tools">
-              <h3 className="credentials-tools-title">{tools.title}</h3>
-              <p className="credentials-tools-list">{tools.items.join(" • ")}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Selected work — placeholder while case studies are in progress */}
+        {/* Selected work */}
         <section id="work" className="work">
           <p className="eyebrow"><span className="ai-chapter-num">05</span>Selected Projects</p>
           <h2 className="work-headline">
             Places I&apos;ve helped shape products, platforms, and public experiences.
           </h2>
 
-          <div className="work-placeholder">
-            <ul className="work-placeholder-logos" aria-label="Selected clients">
-              {workPlaceholder.logos.map((client) => (
-                <li key={client.name}>
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className="work-placeholder-logo"
-                    style={{ "--logo-scale": client.scale ?? 1 }}
-                    loading="lazy"
-                  />
-                </li>
-              ))}
-            </ul>
-            <p className="work-placeholder-note">{workPlaceholder.note}</p>
+          <div className="work-cards">
+            {selectedProjects.map((cs, index) => {
+              const study = getCaseStudyById(cs.id);
+              const hasReport = Boolean(study?.details ?? cs.details);
+
+              return (
+                <Link
+                  key={cs.id}
+                  to={`/work/${cs.id}`}
+                  className="work-card"
+                  aria-label={`Open ${cs.company} case study`}
+                >
+                  <div className="work-card-media">
+                    {cs.image ? (
+                      <img
+                        src={cs.image}
+                        alt=""
+                        className="work-card-image work-card-image--photo"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div
+                        className={`work-card-image case-thumb--${(index % 6) + 1}`}
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span className="work-card-status">
+                      {hasReport
+                        ? study?.status || cs.status || "Case study"
+                        : "Coming soon"}
+                    </span>
+                  </div>
+                  <div className="work-card-body">
+                    <h3 className="work-card-title">{cs.company}</h3>
+                    <p className="work-card-desc">{cs.description}</p>
+                    <div className="work-card-footer">
+                      <span className="work-card-cta">
+                        {cs.cta} <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
@@ -263,53 +310,100 @@ export default function App() {
           aria-labelledby="fu-spotlight-title"
         >
           <div className="fu-spotlight-inner">
-            <div className="fu-spotlight-copy">
+            <div className="fu-spotlight-intro">
               <p className="fu-spotlight-eyebrow"><span className="ai-chapter-num">06</span>{frontendUnited.tagline}</p>
-              {frontendUnited.heroImage && (
-                <img
-                  src={frontendUnited.heroImage.src}
-                  alt={frontendUnited.heroImage.alt}
-                  className="fu-spotlight-hero"
-                  loading="lazy"
-                />
-              )}
               <h2 id="fu-spotlight-title" className="fu-spotlight-title">
                 <span className="fu-spotlight-title-line">{frontendUnited.titleSub}</span>
                 <span>{frontendUnited.title}</span>
               </h2>
-              <div className="fu-spotlight-text-grid">
-                {frontendUnited.paragraphs?.map((paragraph) => (
-                  <p key={paragraph.slice(0, 48)} className="fu-spotlight-desc">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-              <a
-                className="fu-spotlight-link"
-                href={frontendUnited.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read more →
-              </a>
+              {frontendUnited.heroImage && (
+                <button
+                  type="button"
+                  className="fu-spotlight-hero-btn"
+                  onClick={() => openLightbox(0)}
+                  aria-label={`Open image: ${frontendUnited.heroImage.alt}`}
+                >
+                  <img
+                    src={frontendUnited.heroImage.src}
+                    alt={frontendUnited.heroImage.alt}
+                    className="fu-spotlight-hero"
+                    loading="lazy"
+                  />
+                </button>
+              )}
             </div>
-            <div className="fu-spotlight-media">
-              <div className="fu-spotlight-gallery-grid">
-                {[frontendUnited.mainImage, ...(frontendUnited.gallery ?? [])].map(
-                  (image) => (
+
+            <div className="fu-spotlight-split">
+              <div className="fu-spotlight-copy">
+                <div className="fu-spotlight-text-grid">
+                  {frontendUnited.paragraphs?.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)} className="fu-spotlight-desc">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                <a
+                  className="fu-spotlight-link"
+                  href={frontendUnited.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read more →
+                </a>
+              </div>
+              {frontendVideo && frontendVideoIndex >= 0 && (
+                <div className="fu-spotlight-media">
+                  <button
+                    type="button"
+                    className="fu-spotlight-media-btn fu-spotlight-media-btn--video fu-spotlight-media-btn--feature"
+                    onClick={() => openLightbox(frontendVideoIndex)}
+                    aria-label={`Play video: ${frontendVideo.title}`}
+                  >
                     <img
-                      key={image.src}
-                      src={image.src}
-                      alt={image.alt}
-                      className="fu-spotlight-photo fu-spotlight-photo--thumb"
+                      src={frontendVideo.thumb}
+                      alt={frontendVideo.alt}
+                      className="fu-spotlight-photo fu-spotlight-photo--video"
                       loading="lazy"
                     />
-                  )
-                )}
-              </div>
+                    <span className="fu-spotlight-play" aria-hidden="true">
+                      ▶
+                    </span>
+                  </button>
+                </div>
+              )}
             </div>
+
+            {frontendGalleryItems.length > 0 && (
+              <div className="fu-spotlight-gallery">
+                <div className="fu-spotlight-gallery-grid">
+                  {frontendGalleryItems.map(({ item, index }) => (
+                    <button
+                      key={item.src}
+                      type="button"
+                      className="fu-spotlight-media-btn"
+                      onClick={() => openLightbox(index)}
+                      aria-label={`Open image: ${item.alt}`}
+                    >
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="fu-spotlight-photo fu-spotlight-photo--thumb"
+                        loading="lazy"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
+
+        <MediaLightbox
+          items={frontendMedia}
+          index={lightboxIndex}
+          onClose={closeLightbox}
+          onNavigate={setLightboxIndex}
+        />
 
         {showCareerSection && (
           <section id="career" className="timeline-section">
@@ -397,25 +491,6 @@ export default function App() {
             />
             <button type="submit">Connect</button>
           </form>
-          <p className="footer-form-note">
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            {" · "}
-            <a
-              href={profile.website}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              amyash.co.uk
-            </a>
-            {" · "}
-            <a
-              href="https://www.linkedin.com/in/amyashldn/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </p>
         </div>
 
         <div className="footer-mega">
@@ -424,17 +499,6 @@ export default function App() {
         </div>
 
         <div className="footer-bottom">
-          <nav aria-label="Footer">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a
-              href="https://www.linkedin.com/in/amyashldn/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </nav>
           <p>© {new Date().getFullYear()} Amy Ash. All rights reserved.</p>
         </div>
       </footer>

@@ -9,7 +9,7 @@ export const profile = {
 export const showCareerSection = false;
 
 export const aiFirst = {
-  number: "03",
+  number: "04",
   title: "DESIGNING",
   titleSub: "with AI",
   lead: "I design with AI at the centre, and I teach others to do the same.",
@@ -77,59 +77,212 @@ export const caseStudies = [
     external: true,
   },
   {
-    id: "bfi-player",
-    company: "BFI Player",
-    status: "Featured",
-    tagline: "Case study",
-    question: "How did this work shape product and experience outcomes?",
-    href: "https://player.bfi.org.uk/",
-    external: true,
-  },
-  {
-    id: "bfi-samsung",
-    company: "BFI Samsung",
-    status: "Archive",
-    tagline: "Case study",
-    question: "How did this work shape product and experience outcomes?",
-    href: "#work",
-    external: false,
-  },
-  {
-    id: "bfi-mediatheque",
-    company: "BFI's Mediatheque",
-    status: "Archive",
-    tagline: "Case study",
-    question: "How did this work shape product and experience outcomes?",
-    href: "#work",
-    external: false,
-  },
-  {
-    id: "audible-kurupt-fm",
-    company: "Audible x Kurupt FM",
-    status: "Award-winning",
-    tagline: "4 x award-winning project",
-    question:
-      "How do you drive podcast downloads while keeping the campaign unmistakably Kurupt FM?",
+    id: "bfi-player-samsung",
+    company: "BFI Player & Samsung Smart TV",
+    status: "UX / Product Design",
+    tagline: "Redesigning film discovery across web and connected TV",
     href: "#work",
     external: false,
     details: {
-      role: "Lead UX, UI and developer",
+      role: "Lead UX / Product Designer",
+      client: "British Film Institute",
       services:
-        "UX and development for Audible UK in collaboration with Kurupt FM",
-      client: "Recipe Advertising for Audible",
-      location: "London",
-      launchDate: "July 2019",
+        "End-to-end redesign of BFI Player across web and Samsung Smart TV—from research and workshops through interaction design, user testing and design system development.",
+      overviewImages: [
+        {
+          src: "/bfi-player-samsung/grid-focus-doc.png",
+          alt: "BFI Player Samsung TV documentation showing grid focus behaviour, with horizontal roaming focus updating the breakout panel and vertical row shifting.",
+        },
+        {
+          src: "/bfi-player-samsung/transport-controls-doc.png",
+          alt: "BFI Player Samsung TV documentation for video player transport controls, showing play/pause focus states and the paused info bar.",
+        },
+        {
+          src: "/bfi-player-samsung/landing-pages-doc.png",
+          alt: "BFI Player Samsung TV documentation page showing annotated landing page UI with focus states, blurred hero artwork and film collection grid.",
+        },
+      ],
+      overview:
+        "The British Film Institute wanted to modernise its video-on-demand experience across web and Samsung Smart TVs. The existing experience made it difficult for users to discover films, understand subscription options and complete purchases.\n\nAs the sole UX/Product Designer, I led the end-to-end design of the new experience—from research and workshops through interaction design, user testing, design system development and iterative improvements after launch.",
+      challenge:
+        "Unlike mainstream streaming platforms, BFI Player contained a unique mixture of:\n\n• subscription content\n• rental films\n• free archive content\n• editorial collections\n• educational material\n\nUsers didn't always know:\n\n• what was available\n• why some films required payment\n• where to begin browsing\n• how different subscription tiers worked\n\nThe challenge wasn't simply redesigning an interface—it was creating a discovery experience that made a complex catalogue feel approachable.",
+      myRole:
+        "I owned:\n\n• Product strategy\n• UX research\n• Persona workshops\n• Information architecture\n• User journeys\n• Wireframes\n• UI design\n• Interaction design\n• Design system (Pattern Lab)\n• User testing\n• Design QA\n\nI worked closely with:\n\n• Product Owner\n• Developers\n• BFI stakeholders\n• Content teams",
+      understandingUsers:
+        "One of the first activities I facilitated was a series of persona workshops with BFI stakeholders.\n\nThese helped us understand that people weren't arriving with the same goals.\n\nSome users wanted to watch a specific film. Others wanted to browse, discover something new, explore a historical topic, research archive material, or simply be inspired.\n\nThose very different behaviours informed almost every design decision that followed.",
+      solvingDiscovery:
+        "One recurring theme throughout the project was reducing the effort required to find something worth watching.\n\nInstead of treating search as the primary journey, I designed multiple complementary discovery mechanisms including:\n\n• curated collections\n• related content\n• metadata-driven recommendations\n• contextual navigation\n• improved filtering\n• richer film cards\n\nI also explored ideas such as roulette discovery, mood-based browsing and metadata-led search—bringing inspiration back from a VOD conference into the project.",
+      designSystem:
+        "Rather than producing isolated screens, I created a reusable component library using Pattern Lab.\n\nThis included:\n\n• Film cards\n• Collection cards\n• Navigation\n• Payment flows\n• Promotional components\n• Responsive layouts\n\nThe goal was consistency across desktop, tablet, mobile and Samsung Smart TV.",
+      iterativeTesting:
+        "Multiple rounds of usability testing surfaced issues that directly informed design iterations before launch, including:\n\n• users couldn't find search results under the keyboard\n• filters weren't understood\n• \"Type\" wasn't meaningful\n• users struggled to reset search\n• navigation labels caused confusion\n• search felt overwhelming\n• people expected different hover behaviours\n\nThose findings drove genuine evidence-based design rather than opinion-led decisions.",
+      interactionDesign:
+        "I explored ways of making browsing feel more cinematic.\n\nExamples included:\n\n• animated card interactions\n• moving artwork\n• hover previews\n• sticky scrolling layouts\n• progressive disclosure\n• editorial storytelling\n\nRather than overwhelming users with large grids of content, the homepage became a guided journey through films and collections.",
+      balancingNeeds:
+        "The platform needed to support three very different business models:\n\n• Free\n• Rental\n• Subscription\n\nA major design challenge was helping users understand why some films were available immediately while others required payment.\n\nThis influenced:\n\n• card design\n• colour coding\n• payment journeys\n• homepage hierarchy\n• collection structure",
+      outcome:
+        "The redesigned experience successfully launched across BFI Player.\n\nIt introduced:\n\n• a modern visual language\n• clearer discovery journeys\n• reusable design components\n• improved payment flows\n• validated UX through multiple rounds of testing\n\nMany of the interaction patterns, information architecture and discovery principles developed during the project continued into later versions of BFI Player.",
+      reflection:
+        "This project fundamentally changed how I approach product design.\n\nRather than designing individual pages, I learned to think in systems:\n\n• designing reusable components\n• validating decisions with research\n• balancing editorial curation with algorithmic discovery\n• using interaction design to encourage exploration rather than simply display content\n\nIt remains one of the projects that shaped how I approach product design today.",
+    },
+  },
+  {
+    id: "bfi-mediatheque",
+    company: "BFI Mediatheque",
+    status: "Experience & Service Design",
+    tagline: "Reimagining the archive experience",
+    href: "#work",
+    external: false,
+    details: {
+      heroImages: [
+        {
+          src: "/bfi-mediatheque/interior-wide.png",
+          alt: "Wide view of lounge seating and red viewing booths.",
+        },
+        {
+          src: "/bfi-mediatheque/booths-touchscreen.png",
+          alt: "Visitor using a large touchscreen in a Mediatheque booth.",
+        },
+        {
+          src: "/bfi-mediatheque/interior-lounge-01.png",
+          alt: "Families using Mediatheque screens among colourful seating.",
+        },
+        {
+          src: "/bfi-mediatheque/model-overview.png",
+          alt: "Architectural scale model of the Mediatheque with red booths and lounge seating.",
+        },
+      ],
+      heroImagesCredit: {
+        label: "Cullinan Studio Architects",
+        href: "http://cullinanstudio.com/project/bfi-mediatheque",
+      },
+      showcase: [
+        {
+          src: "/bfi-mediatheque/exterior-southbank.png",
+          alt: "BFI Southbank exterior at dusk beneath Waterloo Bridge.",
+          caption: "BFI Southbank",
+        },
+        {
+          src: "/bfi-mediatheque/exterior-mediatheque.png",
+          alt: "BFI Mediatheque entrance with Film Forever signage.",
+          caption: "Mediatheque entrance",
+        },
+        {
+          src: "/bfi-mediatheque/interior-mezzanine.png",
+          alt: "Open Mediatheque lounge with pebble seating and archive screens.",
+          caption: "Public lounge",
+        },
+        {
+          src: "/bfi-mediatheque/interior-lounge-02.png",
+          alt: "Mediatheque lounge opening onto the wider Southbank foyer.",
+          caption: "Lounge and foyer",
+        },
+        {
+          src: "/bfi-mediatheque/lounge-and-desk.png",
+          alt: "Relaxed lounge seating beside a focused desk viewing station.",
+          caption: "Multiple contexts",
+        },
+        {
+          src: "/bfi-mediatheque/children-screens.png",
+          alt: "Children watching archive films on embedded lounge screens.",
+          caption: "Accessible for all ages",
+        },
+        {
+          src: "/bfi-mediatheque/floorplan.png",
+          alt: "Architectural plan of the Mediatheque layout.",
+          caption: "Space plan",
+        },
+      ],
+      overview:
+        "The Mediatheque gives the public free access to thousands of films, television programmes and archive materials from the BFI National Archive.\n\nWhen I joined the project, the experience relied on ageing dedicated computers running a legacy database application. Visitors searched using traditional desktop PCs with keyboards and mice that had become unreliable and increasingly difficult to maintain. The overall experience felt dated, intimidating and at odds with the quality of the archive itself.\n\nThe brief was not simply to redesign an interface, but to completely replace the legacy system with a modern web application that could support everything from visitors' own devices to large-format touchscreen installations designed for a cinema-like browsing experience.\n\nAs the sole UX designer, I led the project from discovery through to launch, owning the research, information architecture, interaction design, usability testing and design iteration.",
+      challenge:
+        "This was an unusually complex design problem because it wasn't one product.\n\nThe experience needed to work across dramatically different contexts:\n\n• visitors exploring the archive on large multi-touch displays\n• users interacting with traditional desktop computers\n• responsive layouts for personal devices\n• casual visitors browsing for inspiration\n• researchers arriving with a specific film or programme in mind\n\nThe challenge was to create a single product that could adapt naturally to each context without compromising usability.\n\nAt the same time, the interface needed to make a vast cultural archive feel approachable for people with very different levels of knowledge about film.",
+      challengeImages: [
+        {
+          src: "/bfi-mediatheque/visitor-smile.png",
+          alt: "Visitor smiling while wearing headphones in the Mediatheque.",
+        },
+        {
+          src: "/bfi-mediatheque/booths-family.png",
+          alt: "Families seated in red Mediatheque viewing pods.",
+        },
+      ],
+      discovery:
+        "Rather than starting with interface design, I began by observing how people used the existing Mediatheque.\n\nThis helped me understand that many usability issues occurred before users even interacted with the software.\n\nMy observations covered the entire service, including:\n\n• how visitors discovered the Mediatheque\n• how they entered the space\n• whether they understood the ticketing process\n• how confident they felt using the technology\n• where they became confused or abandoned tasks\n\nThese observations influenced both the digital product and the wider user journey.",
+      discoveryImages: {
+        credit: "Illustrations by Lin Jin",
+        items: [
+          {
+            src: "/bfi-mediatheque/linjin/persona-01-angela.jpg",
+            alt: "Southbank Explorer: Angela’s story — illustrated journey storyboard.",
+          },
+          {
+            src: "/bfi-mediatheque/linjin/persona-02-wei.jpg",
+            alt: "Cultural & Leisure seeker: Wei’s story — illustrated journey storyboard.",
+          },
+          {
+            src: "/bfi-mediatheque/linjin/persona-03-louise.jpg",
+            alt: "Research for film: Louise’s story — illustrated journey storyboard.",
+          },
+          {
+            src: "/bfi-mediatheque/linjin/persona-04-rosie.jpg",
+            alt: "Teach & Learn: Rosie’s story — illustrated journey storyboard.",
+          },
+        ],
+      },
+      devices:
+        "One of the biggest design challenges was creating an experience that worked equally well across devices with completely different interaction models.\n\nUnlike a traditional responsive website, the product needed to support:\n\n• large multi-touch displays\n• extended reach distances\n• two-handed interaction\n• standing users\n• desktop mouse and keyboard\n• personal mobile devices\n\nThis meant rethinking navigation, search, gestures, layout and interaction patterns rather than simply resizing pages for different screen sizes.",
+      research:
+        "Throughout the project I planned and facilitated multiple rounds of usability testing.\n\nEach round generated improvements across areas including:\n\n• search behaviour\n• filtering\n• information architecture\n• navigation\n• terminology\n• homepage content\n• playback controls\n• discoverability\n\nThe design evolved continuously through testing rather than following a fixed specification.",
+      myRole:
+        "As the only UX designer on the project, I was responsible for:\n\n• Discovery research\n• Service observation\n• Experience mapping\n• Information architecture\n• Interaction design\n• Responsive design\n• Touchscreen UX\n• Wireframing\n• Prototyping\n• Usability testing\n• Design iteration\n• Working with developers through implementation",
+      outcome:
+        "The redesigned Mediatheque launched successfully and replaced the legacy archive system.\n\nThe platform continues to power the public Mediatheque experience today, enabling hundreds of visitors every day to explore one of the world's most significant moving image collections through a modern, accessible interface.\n\nAlthough the project wasn't measured against commercial KPIs, extensive usability testing informed the design throughout development, and seeing the service remain in active public use years after launch is a strong indication that the design has stood the test of time.",
+    },
+  },
+  {
+    id: "audible-kurupt-fm",
+    company: "Audible × Kurupt FM",
+    status: "4× award-winning project",
+    tagline: "Designing the internet as Chabuddy G imagined it",
+    href: "#work",
+    external: false,
+    details: {
+      role: "Art direction, Lead product design and Front end development",
+      services:
+        "A suite of intentionally terrible websites created to launch ",
+      servicesLink: {
+        label: "Audible's original Kurupt FM Podkast.",
+        href: "https://soundcloud.com/kuruptpodkasts",
+      },
+      client: "Recipe Advertising for Audible UK",
+      heroVideo: {
+        src: "/kurupt-videos/case-study.mp4",
+        title: "Kurupt FM case study film",
+        posterTime: 53,
+      },
+      heroLink: {
+        label: "Listen on SoundCloud",
+        href: "https://soundcloud.com/kuruptpodkasts",
+      },
       awards: [
         {
+          label: "Creative Circle",
+          image: "/kurupt-awards/creative-circle.png",
+        },
+        {
+          label: "The Caples",
+          image: "/kurupt-awards/caples.png",
+          href: "https://caples.org/2020-winners-results/?id=319&cat=Branded%2520Content",
+        },
+        {
           label: "Creative Circle: Best Site/Microsite 2020",
-          href: "https://www.creativecircle.co.uk/2020.html#13775",
         },
         {
           label: "Creative Circle: Best Art Direction 2020",
-          href: "https://www.creativecircle.co.uk/2020.html#13774",
         },
         {
-          label: "The Caples: Branded Content - Silver 2020",
+          label: "The Caples: Branded content - Silver 2020",
           href: "https://caples.org/2020-winners-results/?id=319&cat=Branded%2520Content",
         },
         {
@@ -137,36 +290,52 @@ export const caseStudies = [
           href: "https://caples.org/2020-winners-results/?id=319&cat=Branded%2520Content",
         },
       ],
-      overview:
-        "To promote Audible's Kurupt FM Podkast, we created six campaign websites for Chabuddy G's fictional businesses, intentionally art-directed like chaotic late-90s internet.",
-      context:
-        "Audible challenged us to drive downloads while proving it could produce high-quality original content. The core audience was 16-40-year-olds, especially existing Kurupt FM fans who did not yet know the podcast had moved to Audible.",
-      designBuild:
-        "I led UX and UI with Recipe and the Kurupt FM team, then designed and built the sites directly in CSS and JavaScript to capture the exact Geocities-style aesthetic. Each site featured jingles, audio clips, videos, and click-through paths to Audible's Kurupt FM landing page, often via a deliberate '420 page not found' moment.",
       challenge:
-        "The challenge was balancing deliberately bad 90s web design with modern device expectations. Traffic was primarily social and mobile, so despite the parody we still needed a usable mWeb experience.",
-      easterEggs:
-        "The sites included hidden ASCII graffiti in markup, custom ugly domains, fake SSL certificates, period-style search, custom scrollbars, fake crash messaging, and an interactive Ouija board.",
-      result:
-        "The Kurupt Websites campaign made Kurupt FM the most downloaded Audible podcast that month.",
-      warning: "Headphone warning: these sites use auto-play audio and may be loud.",
-      videos: [
-        { title: "Music", src: "/kurupt-videos/music.mov" },
-        { title: "420 page", src: "/kurupt-videos/420.mov" },
-        { title: "Italiano", src: "/kurupt-videos/italiano.mov" },
-        { title: "Jujitsu", src: "/kurupt-videos/jujitsu.mov" },
-        { title: "Ouiji", src: "/kurupt-videos/ouiji.mov" },
-        { title: "Techheads", src: "/kurupt-videos/techheads.mov" },
-        { title: "TinyLove", src: "/kurupt-videos/tinylove.mov" },
+        "Audible was launching The Kurupt FM Podkast, an Audible Original featuring the cast of People Just Do Nothing.\n\nThe objective wasn't simply to advertise a podcast. It was to convince an existing fanbase that Kurupt FM had found a new home on Audible, while reinforcing Audible's growing catalogue of original content.\n\nTraditional campaign pages felt too polished for the characters. If the websites looked professionally designed, the joke would be lost.\n\nThe challenge became:",
+      challengeQuote:
+        "How do you create websites that feel authentically made by Chabuddy G while still persuading thousands of users to click through and start listening?",
+      myRole:
+        "I led the art direction, product design and front-end development of the campaign.\n\nWorking alongside Recipe's creative team and the writers behind Kurupt FM, I designed and built six standalone promotional websites—one for each of Chabuddy G's fictional businesses.\n\nRather than producing static designs for handover, I built the experiences directly in HTML, CSS and JavaScript so I could obsess over the small interactions that made each site feel believable.",
+      designingBad:
+        "Ironically, creating convincingly poor web design required far more care than producing polished interfaces.\n\nEvery decision had to balance comedy with usability.\n\nThe sites deliberately borrowed from late-90s GeoCities culture:\n\n• flashing GIFs\n• tiled backgrounds\n• visitor counters\n• autoplay audio\n• broken layouts\n• comic sans typography\n• fake SSL warnings\n• outdated browser behaviour\n• absurd domain names\n\nYet beneath the chaos sat a carefully considered navigation model that always led users towards Audible.\n\nIf people genuinely became lost or frustrated, the campaign would fail.\n\nThat tension between parody and usability became the central design challenge.",
+      designingBadImages: [
+        {
+          src: "/kurupt-sites/tiny-love.png",
+          alt: "Tiny Love dating site parody with pink GeoCities layout.",
+        },
+        {
+          src: "/kurupt-sites/music-managerial.png",
+          alt: "Chabuddy G’s Music Managerial Services parody website.",
+        },
+        {
+          src: "/kurupt-sites/ask-steves-nan.png",
+          alt: "Ask Steves' Nan Ouija board parody website.",
+        },
+        {
+          src: "/kurupt-sites/jungle-jujitsu.png",
+          alt: "Chabuddy G's Jungle Jujitsu Fighting Club parody website.",
+        },
+        {
+          src: "/kurupt-sites/mode-italiano.png",
+          alt: "Mode Italiano fashion parody website with Italian flag background.",
+        },
       ],
-      liveSites: [
-        "http://techheads.websitebuilder2000.net/",
-        "http://musicmanagerialservices.websitebuilder2000.net/",
-        "http://tinylove.websitebuilder2000.net/",
-        "http://junglejujitsu.websitebuilder2000.net/",
-        "http://chabuddysafterlifeservices.websitebuilder2000.net/",
-        "http://authenticitaliangarments.websitebuilder2000.net/",
+      buildingInBrowser:
+        "Because so much of the humour relied on timing and interaction, I chose to design directly in code rather than relying solely on static mock-ups.\n\nThis gave me complete control over every detail, from intentionally broken loading states to custom scrollbars, fake operating system errors and interactive easter eggs.\n\nHidden throughout the sites were rewards for curious visitors, including:\n\n• ASCII graffiti hidden in the markup\n• a working Ouija board\n• vintage Google search\n• deliberately insecure certificate warnings\n• fake \"420 Page Not Found\" screens\n• hidden interactions and visual gags\n\nEvery website became its own small interactive comedy sketch.",
+      buildingInBrowserImages: [
+        {
+          src: "/kurupt-sites/ascii-source.png",
+          alt: "HTML source with ASCII graffiti easter egg signed AMY_ASH hidden in a comment.",
+        },
       ],
+      mobileFirst:
+        "Although the visual language came from 1998, almost all traffic would arrive from modern smartphones via social media.\n\nThe biggest technical challenge was translating deliberately outdated desktop web conventions into responsive mobile experiences without losing the joke.\n\nThe result was six websites that felt authentically awful while remaining fully functional on contemporary devices.",
+      outcome:
+        "The campaign launched alongside The Kurupt FM Podkast in July 2019.\n\nThe work received multiple industry awards, including:\n\n• Creative Circle – Best Microsite\n• Creative Circle – Best Art Direction\n• [Caples Awards – Silver (Branded Content)](https://caples.org/2020-winners-results/?id=319&cat=Branded%2520Content)\n• [Caples Awards – Bronze (Branded Content)](https://caples.org/2020-winners-results/?id=319&cat=Branded%2520Content)\n\nThe websites were also shared directly by Chabuddy G across social media, extending the campaign organically amongst an existing fan community.",
+      youtubeEmbed: {
+        src: "https://www.youtube.com/embed/I8Pj_Si8Pdk",
+        title: "Kurupt FM campaign film",
+      },
       references: [
         {
           label: "Audible: The Kurupt FM Podkast (Series 1)",
@@ -533,7 +702,7 @@ export const caseStudyGroups = [
   {
     id: "ux-ui",
     title: "Product design",
-    caseIds: ["expedia", "bfi-player", "bfi-samsung", "audible"],
+    caseIds: ["expedia", "bfi-player-samsung", "audible-kurupt-fm"],
   },
   {
     id: "culture-place",
@@ -559,6 +728,46 @@ export const caseStudyGroups = [
   },
 ];
 
+const caseStudyById = Object.fromEntries(caseStudies.map((cs) => [cs.id, cs]));
+
+export function getCaseStudyById(id) {
+  return caseStudyById[id] ?? null;
+}
+
+export function getCaseStudiesForGroup(group) {
+  return group.caseIds.map((id) => caseStudyById[id]).filter(Boolean);
+}
+
+/** Featured case studies shown in Selected Projects (edit these to fill out). */
+export const selectedProjects = [
+  {
+    id: "expedia",
+    company: "Expedia Group",
+    description: "Designing AI-native travel experiences",
+    cta: "Get notified",
+  },
+  {
+    id: "bfi-player-samsung",
+    company: "BFI Player & Samsung",
+    description: "Redesigning film discovery across web and connected TV",
+    cta: "Open case study",
+  },
+  {
+    id: "bfi-mediatheque",
+    company: "BFI Mediatheque",
+    description: "Reimagining the archive experience",
+    cta: "Open case study",
+    image: "/bfi-mediatheque/interior-wide.png",
+  },
+  {
+    id: "audible-kurupt-fm",
+    company: "Audible × Kurupt FM",
+    description: "Designing the internet as Chabuddy G imagined it",
+    cta: "Open case study",
+    image: "/kurupt-videos/case-study-poster.jpg",
+  },
+];
+
 /** Temporary work section — full case studies hidden while in progress. */
 export const workPlaceholder = {
   note: "Case studies available on request.",
@@ -569,12 +778,6 @@ export const workPlaceholder = {
     { name: "Sky", logo: "/logos-transparent/Sky.png", scale: 0.84 },
   ],
 };
-
-const caseStudyById = Object.fromEntries(caseStudies.map((cs) => [cs.id, cs]));
-
-export function getCaseStudiesForGroup(group) {
-  return group.caseIds.map((id) => caseStudyById[id]).filter(Boolean);
-}
 
 export const frontendUnited = {
   name: "Frontend United",
@@ -624,7 +827,27 @@ export const frontendUnited = {
       src: "/frontend-gallery/speaker-07.png",
       alt: "Amy Ash addressing the audience at Frontend United.",
     },
+    {
+      src: "/frontend-gallery/workshop-zebra.png",
+      alt: "Workshop session with a speaker presenting website diagrams to an attentive audience.",
+    },
+    {
+      src: "/frontend-gallery/global-map.png",
+      alt: "Frontend United global community map with livestream locations marked worldwide.",
+    },
+    {
+      src: "/frontend-gallery/audience-theater.png",
+      alt: "Packed Frontend United auditorium facing the stage screen.",
+    },
   ],
+  video: {
+    type: "video",
+    videoId: "5hdIb5kTLls",
+    href: "https://www.youtube.com/watch?v=5hdIb5kTLls",
+    title: "Frontend United talk on YouTube",
+    thumb: "https://i.ytimg.com/vi/5hdIb5kTLls/hqdefault.jpg",
+    alt: "Watch the Frontend United talk on YouTube.",
+  },
   href: "https://medium.com/@frontendunited/the-wild-years-of-frontend-united-48980587e7d1",
 };
 
