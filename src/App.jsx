@@ -16,10 +16,15 @@ import {
 import AsciiCursor from "./components/AsciiCursor";
 import ExperienceTicker from "./components/ExperienceTicker";
 import MediaLightbox from "./components/MediaLightbox";
+import { setDocumentMeta } from "./seo";
 import "./App.css";
 
 export default function App() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  useEffect(() => {
+    setDocumentMeta({ path: "/" });
+  }, []);
 
   const frontendMedia = [
     frontendUnited.heroImage,
