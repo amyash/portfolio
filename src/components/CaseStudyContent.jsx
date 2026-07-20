@@ -394,16 +394,20 @@ function ReportBody({ project }) {
           </section>
         )}
 
-        {details.youtubeEmbed && (
-          <figure className="csm-youtube">
-            <iframe
-              src={details.youtubeEmbed.src}
-              title={details.youtubeEmbed.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
-            />
-          </figure>
+        {details.youtubeEmbeds?.length > 0 && (
+          <div className="csm-youtube-list">
+            {details.youtubeEmbeds.map((embed) => (
+              <figure key={embed.src} className="csm-youtube">
+                <iframe
+                  src={embed.src}
+                  title={embed.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </figure>
+            ))}
+          </div>
         )}
 
         {details.references?.length > 0 && (

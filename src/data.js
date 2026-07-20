@@ -332,10 +332,30 @@ export const caseStudies = [
         "Although the visual language came from 1998, almost all traffic would arrive from modern smartphones via social media.\n\nThe biggest technical challenge was translating deliberately outdated desktop web conventions into responsive mobile experiences without losing the joke.\n\nThe result was six websites that felt authentically awful while remaining fully functional on contemporary devices.",
       outcome:
         "The campaign launched alongside The Kurupt FM Podkast in July 2019.\n\nThe work received multiple industry awards, including:\n\n• Creative Circle – Best Microsite\n• Creative Circle – Best Art Direction\n• [Caples Awards – Silver (Branded Content)](https://caples.org/2020-winners-results/?id=319&cat=Branded%2520Content)\n• [Caples Awards – Bronze (Branded Content)](https://caples.org/2020-winners-results/?id=319&cat=Branded%2520Content)\n\nThe websites were also shared directly by Chabuddy G across social media, extending the campaign organically amongst an existing fan community.",
-      youtubeEmbed: {
-        src: "https://www.youtube.com/embed/I8Pj_Si8Pdk",
-        title: "Kurupt FM campaign film",
-      },
+      youtubeEmbeds: [
+        {
+          src: "https://www.youtube.com/embed/I8Pj_Si8Pdk",
+          title: "Kurupt FM campaign film",
+        },
+        {
+          src: "https://www.youtube.com/embed/4WUuxm5wzmM",
+          title:
+            "Kurupt FM x Audible PodKast, proudly sponsored by Chabuddy G's Jungle Jujitsu Fighting Club",
+        },
+        {
+          src: "https://www.youtube.com/embed/LxPHsE6aYBI",
+          title:
+            "Kurupt FM x Audible PodKast, proudly sponsored by Chabuddy G's Afterlife Service",
+        },
+        {
+          src: "https://www.youtube.com/embed/RMeUaJM6ygo",
+          title: "CHABUDDY G: THE REAL TIGER KING | Audible UK #KuruptFM",
+        },
+        {
+          src: "https://www.youtube.com/embed/tCuz6k2vSpQ",
+          title: "Kurupt FM Podkast - Emergency Broadkast | People Just Do Nothing",
+        },
+      ],
       references: [
         {
           label: "Audible: The Kurupt FM Podkast (Series 1)",
